@@ -1,0 +1,181 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const newsEntries = await getCollection('news');
+  return newsEntries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { title, date, image, excerpt, gallery } = entry.data;
+const { Content } = await render(entry);
+
+const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<Layout title={title} navDark={true}>
+  <!-- BODY -->
+  <section class="article-body">
+    <div class="article-inner">
+      <a href="/news" class="article-back reveal">&larr; Back to News</a>
+
+      <span class="article-date reveal">{formattedDate}</span>
+      <h1 class="article-title reveal" style="transition-delay: 0.05s">{title}</h1>
+
+      <div class="article-main-photo reveal" style="transition-delay: 0.1s">
+        <img src={image} alt={title} />
+      </div>
+
+      {excerpt && <p class="article-excerpt reveal" style="transition-delay: 0.15s">{excerpt}</p>}
+
+      <div class="article-content reveal" style="transition-delay: 0.2s">
+        <Content />
+      </div>
+
+      {gallery && gallery.length > 0 && (
+        <div class="article-gallery reveal" style="transition-delay: 0.25s">
+          {gallery.map((src) => (
+            <div class="article-gallery-item">
+              <img src={src} alt={title} loading="lazy" />
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* =====================
+     BODY
+  ===================== */
+  .article-body {
+    background: var(--white);
+    padding: calc(var(--nav-h) + 48px) var(--px) 110px;
+  }
+
+  .article-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .article-back {
+    display: inline-block;
+    font-family: var(--font-gotham);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    color: var(--gray);
+    text-decoration: none;
+    margin-bottom: 32px;
+    transition: color 0.25s var(--ease);
+  }
+
+  .article-back:hover {
+    color: var(--gold-dark);
+  }
+
+  .article-date {
+    display: block;
+    font-family: var(--font-gotham);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.8rem;
+    color: var(--gold-dark);
+    margin-bottom: 14px;
+  }
+
+  .article-title {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--black);
+    margin-bottom: 32px;
+  }
+
+  .article-main-photo {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+
+  .article-main-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .article-excerpt {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    line-height: 1.4;
+    color: var(--black);
+    padding-bottom: 32px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .article-content {
+    font-family: var(--font-thin);
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--ink);
+  }
+
+  .article-content :global(p) {
+    margin-bottom: 24px;
+  }
+
+  .article-content :global(h2),
+  .article-content :global(h3) {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--black);
+    margin: 40px 0 16px;
+  }
+
+  .article-content :global(img) {
+    width: 100%;
+    border-radius: 12px;
+    margin: 32px 0;
+  }
+
+  .article-content :global(a) {
+    color: var(--gold-dark);
+  }
+
+  /* =====================
+     GALLERY
+  ===================== */
+  .article-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 48px;
+  }
+
+  .article-gallery-item {
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .article-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

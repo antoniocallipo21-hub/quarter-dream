@@ -1,0 +1,634 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { horseCategories } from '../../../data/horses';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allHorses = await getCollection('horses');
+  return allHorses.map((entry) => ({
+    params: { category: entry.data.category, slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const horse = entry.data;
+const { Content } = await render(entry);
+const categoryLabel = horseCategories.find((c) => c.slug === horse.category)?.label ?? '';
+
+const photos = [horse.image, ...(horse.gallery ?? [])];
+---
+
+<Layout title={horse.name} navDark={true}>
+  <section class="horse-page">
+    <div class="horse-gallery-col">
+      <div class="horse-main-photo">
+        <img src={photos[0]} alt={horse.name} id="horse-main-photo" />
+      </div>
+
+      {photos.length > 1 && (
+        <div class="horse-thumbs">
+          {photos.map((src, i) => (
+            <button
+              type="button"
+              class={`horse-thumb${i === 0 ? ' is-active' : ''}`}
+              data-src={src}
+            >
+              <img src={src} alt={`${horse.name} ${i + 1}`} loading="lazy" />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+
+    <div class="horse-passport-col">
+      <span class="horse-category reveal">{categoryLabel}</span>
+      <h1 class="horse-name reveal" style="transition-delay: 0.05s">{horse.name}</h1>
+
+      <dl class="horse-facts reveal" style="transition-delay: 0.15s">
+        {horse.registry && <div><dt>Breed</dt><dd>{horse.registry}</dd></div>}
+        {horse.color && <div><dt>Color</dt><dd>{horse.color}</dd></div>}
+        {horse.born && <div><dt>Born</dt><dd>{horse.born}</dd></div>}
+        {horse.height && <div><dt>Height</dt><dd>{horse.height}</dd></div>}
+        {horse.owner && <div><dt>Owner</dt><dd>{horse.owner}</dd></div>}
+        {horse.breeder && <div><dt>Breeder</dt><dd>{horse.breeder}</dd></div>}
+      </dl>
+
+      {horse.programs && horse.programs.length > 0 && (
+        <div class="horse-programs reveal" style="transition-delay: 0.2s">
+          <span class="horse-programs-label">Nominated To</span>
+          <div class="horse-programs-list">
+            {horse.programs.map((program) => (
+              <span class="horse-program-pill">{program}</span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div class="horse-description reveal" style="transition-delay: 0.25s">
+        <Content />
+      </div>
+    </div>
+  </section>
+
+  <!-- PEDIGREE -->
+  {(horse.sire || horse.dam) && (
+    <section class="pedigree-band">
+      <div class="pedigree-inner">
+        <div class="pedigree-scroll">
+          <div class="pedigree-tree reveal">
+            <div class="pedigree-name">{horse.name}</div>
+            <div class="pedigree-bracket pedigree-bracket-1">
+              <span class="pb-spine"></span>
+              <span class="pb-line pb-top"></span>
+              <span class="pb-line pb-bottom"></span>
+              <span class="pb-line pb-mid"></span>
+            </div>
+
+            <div class="pedigree-sire">{horse.sire}</div>
+            <div class="pedigree-dam">{horse.dam}</div>
+
+            <div class="pedigree-bracket pedigree-bracket-2a">
+              <span class="pb-spine"></span>
+              <span class="pb-line pb-top"></span>
+              <span class="pb-line pb-bottom"></span>
+              <span class="pb-line pb-mid"></span>
+            </div>
+            <div class="pedigree-bracket pedigree-bracket-2b">
+              <span class="pb-spine"></span>
+              <span class="pb-line pb-top"></span>
+              <span class="pb-line pb-bottom"></span>
+              <span class="pb-line pb-mid"></span>
+            </div>
+
+            <div class="pedigree-leaf pedigree-leaf-1">{horse.sireSire}</div>
+            <div class="pedigree-leaf pedigree-leaf-2">{horse.sireDam}</div>
+            <div class="pedigree-leaf pedigree-leaf-3">{horse.damSire}</div>
+            <div class="pedigree-leaf pedigree-leaf-4">{horse.damDam}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- EARNER OF -->
+  {horse.lte && (
+    <section class="earner">
+      <div class="earner-inner">
+        <span class="earner-label reveal">Earner Of</span>
+        <h2 class="earner-amount reveal" style="transition-delay: 0.1s">{horse.lte}</h2>
+
+        {horse.achievements && horse.achievements.length > 0 && (
+          <ul class="palmares">
+            {horse.achievements.map((item, i) => (
+              <li class="reveal" style={`transition-delay: ${0.05 + Math.min(i, 10) * 0.04}s`}>{item}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </section>
+  )}
+
+  <!-- PRODUCE EARNINGS -->
+  {(horse.pe || (horse.progeny && horse.progeny.length > 0)) && (
+    <section class="earner earner-produce">
+      <div class="earner-inner">
+        <span class="earner-label reveal">Produce Earnings</span>
+        {horse.pe && <h2 class="earner-amount reveal" style="transition-delay: 0.1s">{horse.pe}</h2>}
+
+        {horse.progeny && horse.progeny.length > 0 && (
+          <ul class="palmares palmares-progeny">
+            {horse.progeny.map((foal, i) => (
+              <li class="reveal" style={`transition-delay: ${0.05 + Math.min(i, 10) * 0.04}s`}>{foal}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </section>
+  )}
+
+  <!-- BRED TO -->
+  {horse.bredTo && horse.bredTo.length > 0 && (
+    <section class="bred-to">
+      <div class="bred-to-inner">
+        <span class="bred-to-label reveal">Bred To</span>
+        <ul class="bred-to-list">
+          {horse.bredTo.map((item, i) => (
+            <li class="reveal" style={`transition-delay: ${0.05 + i * 0.05}s`}>
+              {item.label} by <strong>{item.sire}</strong> due to {item.due}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+</Layout>
+
+<script>
+  const mainPhoto = document.getElementById('horse-main-photo') as HTMLImageElement | null;
+  const thumbs = document.querySelectorAll<HTMLButtonElement>('.horse-thumb');
+
+  thumbs.forEach((thumb) => {
+    thumb.addEventListener('click', () => {
+      const src = thumb.dataset.src;
+      if (!src || !mainPhoto) return;
+      mainPhoto.src = src;
+      thumbs.forEach((t) => t.classList.remove('is-active'));
+      thumb.classList.add('is-active');
+    });
+  });
+</script>
+
+<style>
+  .horse-page {
+    display: flex;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: var(--nav-h) var(--px) 0;
+    align-items: flex-start;
+  }
+
+  /* =====================
+     GALLERY (LEFT)
+  ===================== */
+  .horse-gallery-col {
+    width: 75%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .horse-main-photo {
+    aspect-ratio: 4 / 3;
+    max-height: 60vh;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--off-white);
+  }
+
+  .horse-main-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .horse-thumbs {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+  }
+
+  .horse-thumb {
+    flex: 0 0 auto;
+    width: 72px;
+    aspect-ratio: 4 / 3;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.25s var(--ease), border-color 0.25s var(--ease);
+  }
+
+  .horse-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .horse-thumb:hover {
+    opacity: 0.85;
+  }
+
+  .horse-thumb.is-active {
+    opacity: 1;
+    border-color: var(--gold);
+  }
+
+  /* =====================
+     PASSPORT (RIGHT)
+  ===================== */
+  .horse-passport-col {
+    width: 25%;
+    padding: 28px 24px;
+    border-left: 1px solid var(--border);
+    overflow-y: auto;
+  }
+
+  .horse-category {
+    display: block;
+    font-family: var(--font-gotham);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.75rem;
+    color: var(--gold-dark);
+    margin-bottom: 10px;
+  }
+
+  .horse-name {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--black);
+    font-size: clamp(1.4rem, 1.7vw, 1.8rem);
+    line-height: 1.1;
+  }
+
+  .horse-facts {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 20px;
+  }
+
+  .horse-facts + .horse-facts {
+    margin-top: 14px;
+  }
+
+  .horse-facts > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .horse-facts dt {
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    color: var(--gray);
+    white-space: nowrap;
+  }
+
+  .horse-facts dd {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--black);
+    text-align: right;
+  }
+
+  .horse-description {
+    margin-top: 20px;
+    font-family: var(--font-thin);
+    font-weight: 300;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--gray-dk);
+  }
+
+  .horse-description :global(p) {
+    margin-bottom: 16px;
+  }
+
+  .horse-programs {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .horse-programs-label {
+    display: block;
+    font-family: var(--font-gotham);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.7rem;
+    color: var(--gray);
+    margin-bottom: 12px;
+  }
+
+  .horse-programs-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .horse-program-pill {
+    font-family: var(--font-gotham);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.7rem;
+    color: var(--gold-dark);
+    border: 1px solid var(--gold);
+    border-radius: 999px;
+    padding: 6px 14px;
+  }
+
+  @media (max-width: 900px) {
+    .horse-page {
+      flex-direction: column;
+      padding-top: var(--nav-h);
+    }
+
+    .horse-gallery-col,
+    .horse-passport-col {
+      width: 100%;
+    }
+
+    .horse-main-photo {
+      aspect-ratio: 4 / 3;
+      flex: none;
+    }
+
+    .horse-passport-col {
+      border-left: none;
+      border-top: 1px solid var(--border);
+      padding: 32px var(--px) 56px;
+    }
+  }
+
+  /* =====================
+     EARNER OF / PRODUCE EARNINGS
+  ===================== */
+  .earner {
+    background: var(--white);
+    padding: 56px var(--px) 64px;
+    border-top: 1px solid var(--border);
+  }
+
+  .earner-produce {
+    border-top: none;
+  }
+
+  .earner-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .earner-label {
+    display: block;
+    font-family: var(--font-gotham);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1.1rem;
+    color: var(--gold-dark);
+    margin-bottom: 8px;
+  }
+
+  .earner-amount {
+    font-family: var(--font-gotham);
+    font-weight: 900;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: var(--black);
+    margin-bottom: 22px;
+  }
+
+  .palmares {
+    list-style: none;
+    margin: 0;
+    columns: 2;
+    column-gap: 56px;
+    text-align: left;
+  }
+
+  .palmares li {
+    font-family: var(--font-gotham);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    color: var(--gray-dk);
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+    break-inside: avoid;
+  }
+
+  @media (max-width: 900px) {
+    .palmares,
+    .palmares-progeny {
+      columns: 1;
+    }
+  }
+
+  /* =====================
+     PEDIGREE
+  ===================== */
+  .pedigree-band {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    padding: 56px var(--px) 64px;
+  }
+
+  .pedigree-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .pedigree-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pedigree-tree {
+    display: grid;
+    grid-template-columns: minmax(200px, 1.2fr) 130px minmax(170px, 1fr) 130px minmax(150px, 1fr);
+    grid-template-rows: repeat(4, minmax(47px, auto));
+  }
+
+  .pedigree-name {
+    grid-column: 1;
+    grid-row: 1 / 5;
+    display: flex;
+    align-items: center;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--white);
+    padding-right: 12px;
+  }
+
+  .pedigree-sire,
+  .pedigree-dam {
+    grid-column: 3;
+    display: flex;
+    align-items: center;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+    color: var(--white);
+    padding: 0 12px;
+  }
+
+  .pedigree-sire { grid-row: 1 / 3; }
+  .pedigree-dam { grid-row: 3 / 5; }
+
+  .pedigree-leaf {
+    grid-column: 5;
+    display: flex;
+    align-items: center;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.72);
+    padding-left: 12px;
+  }
+
+  .pedigree-leaf-1 { grid-row: 1; }
+  .pedigree-leaf-2 { grid-row: 2; }
+  .pedigree-leaf-3 { grid-row: 3; }
+  .pedigree-leaf-4 { grid-row: 4; }
+
+  .pedigree-bracket { position: relative; }
+  .pedigree-bracket-1 { grid-column: 2; grid-row: 1 / 5; }
+  .pedigree-bracket-2a { grid-column: 4; grid-row: 1 / 3; }
+  .pedigree-bracket-2b { grid-column: 4; grid-row: 3 / 5; }
+
+  .pb-spine {
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    bottom: 25%;
+    width: 0;
+    border-left: 2px solid rgba(255,255,255,0.6);
+  }
+
+  .pb-line {
+    position: absolute;
+    height: 0;
+    border-top: 2px solid rgba(255,255,255,0.6);
+  }
+
+  .pb-top,
+  .pb-bottom {
+    right: 0;
+    width: 65px;
+  }
+
+  .pb-top { top: 25%; }
+  .pb-bottom { top: 75%; }
+
+  .pb-mid {
+    top: 50%;
+    left: 0;
+    width: 56px;
+  }
+
+  @media (max-width: 900px) {
+    .pedigree-tree {
+      grid-template-columns: minmax(170px, 1.2fr) 96px minmax(150px, 1fr) 96px minmax(140px, 1fr);
+      min-width: 780px;
+      column-gap: 0;
+    }
+
+    .pedigree-name { font-size: 1.5rem; }
+    .pedigree-sire,
+    .pedigree-dam { font-size: 1rem; }
+    .pedigree-leaf { font-size: 0.85rem; }
+
+    .pb-top,
+    .pb-bottom { width: 48px; }
+    .pb-mid { width: 40px; }
+  }
+
+  /* =====================
+     BRED TO
+  ===================== */
+  .bred-to {
+    background: var(--white);
+    padding: 64px var(--px) 88px;
+  }
+
+  .bred-to-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .bred-to-label {
+    display: block;
+    font-family: var(--font-gotham);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1rem;
+    color: var(--gold-dark);
+    margin-bottom: 20px;
+  }
+
+  .bred-to-list {
+    list-style: none;
+    margin: 0 auto;
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .bred-to-list li {
+    font-family: var(--font-thin);
+    font-weight: 300;
+    font-size: 1.05rem;
+    color: var(--ink);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .bred-to-list li:last-child {
+    border-bottom: none;
+  }
+
+  .bred-to-list li strong {
+    font-family: var(--font-gotham);
+    font-weight: 700;
+    color: var(--black);
+  }
+</style>

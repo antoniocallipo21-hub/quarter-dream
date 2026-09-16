@@ -1,0 +1,344 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const facilities = [
+  'A professional training facility equipped with two indoor arenas, two outdoor arenas, and modern stables with spacious box stalls.',
+  'A breeding area, featuring expansive white wooden paddocks, where broodmares and their foals can relax and thrive in total harmony with nature.',
+  'A close 14-suite 5-star resort, &ldquo;Masseria Cosca&rdquo;.',
+];
+
+const trainers2008 = [
+  { name: 'Markus Schopfer', meta: 'Italy &middot; Cow Horse Competitions' },
+  { name: 'Rudi Kronsteiner', meta: 'Austria &middot; Reining Events' },
+];
+
+const milestones = [
+  'The outstanding victory of Nico Sicuro and Gunner Be Step, a 3-year-old gelding by Sugar Little Step out of Gunna Be Majestic, crowned 2023 NRHA/IRHA/IRHBA Futurity L4 Open Champions with a score of 226.',
+  'Becoming an NRHA Million Dollar Owner in 2024.',
+  'Celebrating the success of their stallion Colonels Dancing Gun, crowned 2024 NRHA Open World Champion, ridden by Level 4 trainer Nico Sicuro, based at the ranch.',
+];
+---
+
+<Layout title="About">
+  <!-- HERO -->
+  <section class="about-hero">
+    <h1 class="about-hero-title reveal">About</h1>
+  </section>
+
+  <!-- INTRO -->
+  <section class="about-intro">
+    <div class="about-inner">
+      <h2 class="about-intro-title reveal">Quarter Dream Ranch &mdash; Breeding Excellence on the Shores of Ostuni</h2>
+      <p class="about-intro-text reveal" style="transition-delay: 0.1s">
+        Nestled on approximately 50 hectares of picturesque land along the Ostuni coastline, Quarter Dream Ranch offers an ideal environment for breeding and training top-performance horses. In 2 facilities both very close to the sea, surrounded by centuries-old olive trees and the natural beauty of Puglia, the ranch is a sanctuary where foals grow up healthy, strong, and mentally balanced.
+      </p>
+    </div>
+  </section>
+
+  <!-- FACILITIES -->
+  <section class="about-facilities">
+    <div class="about-inner">
+      <span class="about-label reveal">The Property</span>
+      <ul class="facilities-list">
+        {facilities.map((item, i) => (
+          <li class="reveal" style={`transition-delay: ${0.05 + i * 0.1}s`} set:html={item} />
+        ))}
+      </ul>
+      <p class="about-intro-text reveal" style="transition-delay: 0.3s; margin-top: 32px;">
+        Quarter Dream specializes in reining horses, and is home to some of the best-bred equine athletes in the performance horse industry today.
+      </p>
+    </div>
+  </section>
+
+  <!-- LEGACY -->
+  <section class="about-legacy">
+    <div class="about-inner">
+      <span class="about-label reveal">Our Legacy</span>
+
+      <div class="founder-photo reveal">
+        <img src="/images/about/founder.jpg" alt="Quarter Dream founder" />
+      </div>
+
+      <p class="about-intro-text reveal" style="transition-delay: 0.1s">
+        The family legacy began in 1930, when Pietro&rsquo;s grandfather, a commander of the Royal Cavalry during wartime, developed his deep connection with horses. That passion was reignited 76 years later, thanks to Pietro&rsquo;s wife and a profound life change inspired by the exceptional nature of the American Quarter Horse.
+      </p>
+      <p class="about-intro-text reveal" style="transition-delay: 0.15s; margin-top: 24px;">
+        In 2008, the first two Quarter Dream horses entered professional training with two of the world&rsquo;s top trainers:
+      </p>
+
+      <div class="trainers-grid">
+        {trainers2008.map((t, i) => (
+          <div class="trainer-card reveal" style={`transition-delay: ${0.2 + i * 0.1}s`}>
+            <span class="trainer-name">{t.name}</span>
+            <span class="trainer-meta" set:html={t.meta} />
+          </div>
+        ))}
+      </div>
+
+      <p class="about-intro-text reveal" style="transition-delay: 0.35s; margin-top: 32px;">
+        Today, the ranch continues to pursue excellence through a carefully curated breeding program, including embryo transfer, under the supervision of Dr. Giovanna Lazzari (Avantea Srl Clinic, Cremona) and Dr. Roberto Duchi. Veterinary care is ensured by Dr. Agostino Rodio and Dr. Marcelo Grill, an expert in joint health and developmental issues in foals.
+      </p>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="about-quote-band">
+    <div class="about-inner">
+      <p class="about-quote reveal">
+        &ldquo;We are building the highest quality band of broodmares we can. We want our mares to become top leading reproducing mares, and our foals &mdash; even in the hands of our clients &mdash; to become World Champions as Colonels Dancing Gun.&rdquo;
+      </p>
+      <span class="about-quote-attr reveal" style="transition-delay: 0.1s">Pietro &amp; Helena, Quarter Dream</span>
+    </div>
+  </section>
+
+  <!-- MILESTONES -->
+  <section class="about-milestones">
+    <div class="about-inner">
+      <span class="about-label reveal">Milestones</span>
+      <ul class="milestones-list">
+        {milestones.map((item, i) => (
+          <li class="reveal" style={`transition-delay: ${0.05 + i * 0.1}s`} set:html={item} />
+        ))}
+      </ul>
+
+      <p class="about-closing reveal" style="transition-delay: 0.4s">
+        The Quarter Dream team remains deeply committed to continuing this journey and celebrating the great achievements of the sport we love.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* =====================
+     HERO
+  ===================== */
+  .about-hero {
+    position: relative;
+    height: 38vh;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.72)),
+      url('/images/menu-bg.jpg') center / cover no-repeat;
+  }
+
+  .about-hero-title {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    color: var(--white);
+  }
+
+  .about-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 var(--px);
+  }
+
+  /* =====================
+     SHARED TEXT
+  ===================== */
+  .about-label {
+    display: block;
+    font-family: var(--font-gotham);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    color: var(--gold-dark);
+    margin-bottom: 24px;
+  }
+
+  .founder-photo {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+
+  .founder-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-intro-title {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    color: var(--black);
+    margin-bottom: 24px;
+  }
+
+  .about-intro-text {
+    font-family: var(--font-thin);
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--gray-dk);
+  }
+
+  /* =====================
+     SECTIONS
+  ===================== */
+  .about-intro {
+    background: var(--white);
+    padding: 88px 0 64px;
+  }
+
+  .about-facilities {
+    background: var(--off-white);
+    padding: 64px 0;
+  }
+
+  .about-legacy {
+    background: var(--white);
+    padding: 64px 0;
+  }
+
+  .facilities-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .facilities-list li {
+    font-family: var(--font-thin);
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--ink);
+    padding-left: 28px;
+    position: relative;
+  }
+
+  .facilities-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 10px;
+    height: 2px;
+    background: var(--gold);
+  }
+
+  /* =====================
+     TRAINERS
+  ===================== */
+  .trainers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 28px;
+  }
+
+  .trainer-card {
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .trainer-name {
+    display: block;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+
+  .trainer-meta {
+    font-family: var(--font-gotham);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.75rem;
+    color: var(--gray);
+  }
+
+  /* =====================
+     QUOTE
+  ===================== */
+  .about-quote-band {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    padding: 72px var(--px);
+  }
+
+  .about-quote-band .about-inner {
+    text-align: center;
+  }
+
+  .about-quote {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: clamp(1.4rem, 2.6vw, 2rem);
+    line-height: 1.4;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .about-quote-attr {
+    font-family: var(--font-gotham);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.8);
+  }
+
+  /* =====================
+     MILESTONES
+  ===================== */
+  .about-milestones {
+    background: var(--white);
+    padding: 72px 0 100px;
+  }
+
+  .milestones-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .milestones-list li {
+    font-family: var(--font-thin);
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--ink);
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-closing {
+    font-family: var(--font-thin);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--gray-dk);
+    margin-top: 32px;
+  }
+
+  @media (max-width: 900px) {
+    .trainers-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

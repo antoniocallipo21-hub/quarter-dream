@@ -1,0 +1,179 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const newsEntries = await getCollection('news');
+const news = newsEntries
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .map((entry) => ({
+    ...entry.data,
+    slug: entry.id,
+    date: entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
+  }));
+---
+
+<Layout title="News">
+  <!-- HERO -->
+  <section class="news-page-hero">
+    <h1 class="news-page-hero-title reveal">News</h1>
+  </section>
+
+  <!-- NEWS LIST -->
+  <section class="news-page-body">
+    <div class="news-page-inner">
+      <div class="news-list">
+        {news.map((item, i) => (
+          <article class="news-list-item reveal" style={`transition-delay: ${0.05 + Math.min(i, 8) * 0.06}s`}>
+            <a href={`/news/${item.slug}`} class="news-list-link">
+              <div class="news-list-thumb">
+                <img src={item.image} alt={item.title} loading="lazy" />
+              </div>
+              <div class="news-list-content">
+                <span class="news-list-date">{item.date}</span>
+                <h2>{item.title}</h2>
+                {item.excerpt && <p>{item.excerpt}</p>}
+                <span class="news-list-read">Read More &rarr;</span>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* =====================
+     HERO
+  ===================== */
+  .news-page-hero {
+    position: relative;
+    height: 38vh;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.72)),
+      url('/images/menu-bg.jpg') center / cover no-repeat;
+  }
+
+  .news-page-hero-title {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    color: var(--white);
+  }
+
+  /* =====================
+     BODY
+  ===================== */
+  .news-page-body {
+    background: var(--white);
+    padding: 88px var(--px) 110px;
+  }
+
+  .news-page-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .news-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .news-list-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .news-list-item:first-child {
+    border-top: 1px solid var(--border);
+  }
+
+  .news-list-link {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 0;
+  }
+
+  .news-list-thumb {
+    flex: 0 0 auto;
+    width: 260px;
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .news-list-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease);
+  }
+
+  .news-list-item:hover .news-list-thumb img { transform: scale(1.05); }
+
+  .news-list-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .news-list-date {
+    display: block;
+    font-family: var(--font-gotham);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.75rem;
+    color: var(--gold-dark);
+    margin-bottom: 10px;
+  }
+
+  .news-list-content h2 {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+    color: var(--black);
+    margin-bottom: 10px;
+  }
+
+  .news-list-content p {
+    font-family: var(--font-thin);
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--gray-dk);
+    max-width: 620px;
+    margin-bottom: 14px;
+  }
+
+  .news-list-read {
+    font-family: var(--font-gotham);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.75rem;
+    color: var(--black);
+    transition: color 0.25s var(--ease);
+  }
+
+  .news-list-item:hover .news-list-read { color: var(--gold-dark); }
+
+  @media (max-width: 900px) {
+    .news-list-link {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 20px;
+      padding: 28px 0;
+    }
+
+    .news-list-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+    }
+  }
+</style>

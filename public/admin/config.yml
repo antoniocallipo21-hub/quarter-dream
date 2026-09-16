@@ -1,0 +1,100 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Cartella dove Decap CMS salva le immagini caricate dal cliente
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "settings"
+    label: "Impostazioni Homepage"
+    files:
+      - label: "Homepage"
+        name: "home"
+        file: "src/content/settings/home.json"
+        fields:
+          - { label: "Hero – Sottotitolo", name: "hero_label", widget: "string" }
+          - { label: "Hero – Titolo", name: "hero_title", widget: "string" }
+          - { label: "Hero – Slogan", name: "hero_slogan", widget: "string" }
+          - { label: "Hero – Immagine di sfondo", name: "hero_image", widget: "image" }
+          - { label: "Achievement – Etichetta", name: "achieve_label", widget: "string" }
+          - { label: "Achievement – Titolo", name: "achieve_title", widget: "string" }
+          - { label: "Achievement – Sottotitolo", name: "achieve_sub", widget: "string" }
+          - { label: "Achievement – Meta", name: "achieve_meta", widget: "string" }
+          - { label: "Testo di presentazione", name: "statement_text", widget: "text" }
+          - { label: "Newsletter – Titolo", name: "newsletter_title", widget: "string" }
+          - { label: "Newsletter – Testo", name: "newsletter_text", widget: "string" }
+
+  - name: "news"
+    label: "News"
+    folder: "src/content/news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Titolo", name: "title", widget: "string" }
+      - { label: "Data", name: "date", widget: "datetime" }
+      - { label: "Immagine principale", name: "image", widget: "image" }
+      - { label: "Riassunto", name: "excerpt", widget: "text" }
+      - { label: "Galleria (facoltativa, 2-3 foto)", name: "gallery", widget: "list", field: { label: "Foto", name: "photo", widget: "image" }, required: false }
+      - { label: "Contenuto", name: "body", widget: "markdown" }
+
+  - name: "horses"
+    label: "Horses"
+    folder: "src/content/horses"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nome", name: "name", widget: "string" }
+      - label: "Categoria"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Broodmares", value: "broodmares" }
+          - { label: "Show Horses", value: "show-horses" }
+          - { label: "Three Years Old", value: "three-years-old" }
+          - { label: "Two Years Old", value: "two-years-old" }
+          - { label: "Weanlings", value: "weanlings" }
+      - { label: "Foto principale", name: "image", widget: "image" }
+      - { label: "Sottotitolo (es. anno e sesso)", name: "subtitle", widget: "string", required: false }
+      - { label: "Anno di nascita", name: "born", widget: "string", required: false }
+      - { label: "Mantello", name: "color", widget: "string", required: false }
+      - { label: "Registro (es. AQHA)", name: "registry", widget: "string", required: false }
+      - { label: "Altezza", name: "height", widget: "string", required: false }
+      - { label: "Proprietario (Owner)", name: "owner", widget: "string", required: false }
+      - { label: "Allevatore (Breeder)", name: "breeder", widget: "string", required: false }
+      - { label: "Padre (Sire)", name: "sire", widget: "string", required: false }
+      - { label: "Madre (Dam)", name: "dam", widget: "string", required: false }
+      - { label: "Nonno paterno", name: "sireSire", widget: "string", required: false }
+      - { label: "Nonna paterna", name: "sireDam", widget: "string", required: false }
+      - { label: "Nonno materno", name: "damSire", widget: "string", required: false }
+      - { label: "Nonna materna", name: "damDam", widget: "string", required: false }
+      - { label: "Programmi (es. IRHBA, NRHA Germany...)", name: "programs", widget: "list", field: { label: "Programma", name: "program", widget: "string" }, required: false }
+      - { label: "LTE (guadagni in carriera)", name: "lte", widget: "string", required: false }
+      - { label: "Palmares", name: "achievements", widget: "list", field: { label: "Risultato", name: "result", widget: "string" }, required: false }
+      - { label: "PE (guadagni dei figli)", name: "pe", widget: "string", required: false }
+      - { label: "Figli (Progeny)", name: "progeny", widget: "list", field: { label: "Nome", name: "foal", widget: "string" }, required: false }
+      - label: "Bred To (solo fattrici)"
+        name: "bredTo"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Etichetta (es. ET#1)", name: "label", widget: "string" }
+          - { label: "Stallone", name: "sire", widget: "string" }
+          - { label: "Data prevista (es. January 2026)", name: "due", widget: "string" }
+      - { label: "Galleria (facoltativa)", name: "gallery", widget: "list", field: { label: "Foto", name: "photo", widget: "image" }, required: false }
+      - { label: "Descrizione", name: "body", widget: "markdown", required: false }
+
+  - name: "stallions"
+    label: "Stallions"
+    folder: "src/content/stallions"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nome", name: "name", widget: "string" }
+      - { label: "Mantello", name: "color", widget: "string" }
+      - { label: "Registro (es. AQHA)", name: "registry", widget: "string" }
+      - { label: "NRHA LTE", name: "lte", widget: "string", required: false }
+      - { label: "Nota", name: "note", widget: "string" }
+      - { label: "Immagine", name: "image", widget: "image" }
+      - { label: "Descrizione", name: "body", widget: "markdown", required: false }

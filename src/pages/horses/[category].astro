@@ -1,0 +1,169 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { horseCategories } from '../../data/horses';
+import { getCollection } from 'astro:content';
+
+export function getStaticPaths() {
+  return horseCategories.map((cat) => ({
+    params: { category: cat.slug },
+    props: { cat },
+  }));
+}
+
+const { cat } = Astro.props;
+const allHorses = await getCollection('horses');
+const categoryHorses = allHorses
+  .filter((h) => h.data.category === cat.slug)
+  .map((h) => ({ slug: h.id, ...h.data }));
+---
+
+<Layout title={cat.label}>
+  <!-- HERO -->
+  <section class="category-hero">
+    <h1 class="category-hero-title reveal">{cat.label}</h1>
+  </section>
+
+  <!-- HORSES GRID -->
+  <section class="category-body">
+    <div class="category-inner">
+      {categoryHorses.length === 0 ? (
+        <p class="category-empty reveal">More {cat.label.toLowerCase()} coming soon.</p>
+      ) : (
+        <div class="horses-grid">
+          {categoryHorses.map((horse, i) => (
+            <a href={`/horses/${cat.slug}/${horse.slug}`} class="horse-card reveal" style={`transition-delay: ${0.05 + Math.min(i, 8) * 0.08}s`}>
+              <div class="horse-card-photo">
+                <img src={horse.image} alt={horse.name} />
+              </div>
+              <div class="horse-card-info">
+                {horse.subtitle && <span class="horse-card-label">{horse.subtitle}</span>}
+                <h3>&ldquo;{horse.name}&rdquo;</h3>
+                {(horse.sire || horse.dam) && (
+                  <p class="horse-card-pedigree">
+                    {horse.sire}{horse.sire && horse.dam ? ' x ' : ''}{horse.dam}
+                  </p>
+                )}
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* =====================
+     HERO
+  ===================== */
+  .category-hero {
+    position: relative;
+    height: 38vh;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.72)),
+      url('/images/menu-bg.jpg') center / cover no-repeat;
+  }
+
+  .category-hero-title {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    color: var(--white);
+  }
+
+  /* =====================
+     BODY
+  ===================== */
+  .category-body {
+    background: var(--white);
+    padding: 88px var(--px) 110px;
+  }
+
+  .category-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .category-empty {
+    font-family: var(--font-thin);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gray);
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  .horses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .horse-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--black);
+  }
+
+  .horse-card-photo {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .horse-card-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease);
+  }
+
+  .horse-card:hover .horse-card-photo img { transform: scale(1.04); }
+
+  .horse-card-info {
+    padding: 20px 22px 24px;
+    text-align: center;
+  }
+
+  .horse-card-label {
+    display: block;
+    font-family: var(--font-thin);
+    font-weight: 300;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 8px;
+  }
+
+  .horse-card-info h3 {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+    color: var(--gold);
+  }
+
+  .horse-card-pedigree {
+    font-family: var(--font-thin);
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.65);
+    margin-top: 8px;
+  }
+
+  @media (max-width: 900px) {
+    .horses-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

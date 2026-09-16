@@ -1,0 +1,773 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { stallions } from '../../data/stallions';
+
+export function getStaticPaths() {
+  return stallions.map((stallion) => ({
+    params: { slug: stallion.slug },
+    props: { stallion },
+  }));
+}
+
+const { stallion } = Astro.props;
+---
+
+<Layout title={stallion.name}>
+  <!-- HERO -->
+  <section class="stallion-hero">
+    <img src={stallion.image} alt={stallion.name} class="stallion-hero-photo" />
+    <div class="stallion-hero-overlay"></div>
+
+    <div class="stallion-hero-portrait reveal" style="transition-delay: 0.2s">
+      <img src={stallion.portrait} alt={`${stallion.name} portrait`} />
+    </div>
+
+    <div class="stallion-hero-content">
+      <img src={stallion.logo} alt={`${stallion.name} logo`} class="stallion-hero-logo reveal" />
+      <h1 class="stallion-hero-name reveal" style="transition-delay: 0.1s">{stallion.name}</h1>
+      <span class="stallion-hero-subtitle reveal" style="transition-delay: 0.15s">{stallion.subtitle}</span>
+    </div>
+  </section>
+
+  <!-- STALLION PASSPORT -->
+  <section class="stallion-body">
+    <div class="passport">
+      <dl class="passport-facts reveal" style="transition-delay: 0.1s">
+        <div><dt>Breed</dt><dd>{stallion.registry}</dd></div>
+        <div><dt>Color</dt><dd>{stallion.color}</dd></div>
+        <div><dt>Born</dt><dd set:html={stallion.born} /></div>
+        <div><dt>Height</dt><dd set:html={stallion.height} /></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- EARNER OF -->
+  <section class="earner">
+    <div class="earner-inner">
+      <span class="earner-label reveal">Earner Of</span>
+      <h2 class="earner-amount reveal" style="transition-delay: 0.1s" set:html={stallion.lte} />
+
+      <ul class="palmares">
+        {stallion.achievements.map((item, i) => (
+          <li class="reveal" style={`transition-delay: ${0.05 + Math.min(i, 10) * 0.04}s`} set:html={item} />
+        ))}
+        <li class="palmares-more reveal">&hellip; and more.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PEDIGREE -->
+  <section class="pedigree-band">
+    <div class="pedigree-inner">
+      <div class="pedigree-scroll">
+        <div class="pedigree-tree reveal">
+          <div class="pedigree-name">{stallion.name}</div>
+          <div class="pedigree-bracket pedigree-bracket-1">
+            <span class="pb-spine"></span>
+            <span class="pb-line pb-top"></span>
+            <span class="pb-line pb-bottom"></span>
+            <span class="pb-line pb-mid"></span>
+          </div>
+
+          <div class="pedigree-sire">{stallion.pedigree.sire}</div>
+          <div class="pedigree-dam">{stallion.pedigree.dam}</div>
+
+          <div class="pedigree-bracket pedigree-bracket-2a">
+            <span class="pb-spine"></span>
+            <span class="pb-line pb-top"></span>
+            <span class="pb-line pb-bottom"></span>
+            <span class="pb-line pb-mid"></span>
+          </div>
+          <div class="pedigree-bracket pedigree-bracket-2b">
+            <span class="pb-spine"></span>
+            <span class="pb-line pb-top"></span>
+            <span class="pb-line pb-bottom"></span>
+            <span class="pb-line pb-mid"></span>
+          </div>
+
+          <div class="pedigree-leaf pedigree-leaf-1">{stallion.pedigree.sireSire}</div>
+          <div class="pedigree-leaf pedigree-leaf-2">{stallion.pedigree.sireDam}</div>
+          <div class="pedigree-leaf pedigree-leaf-3">{stallion.pedigree.damSire}</div>
+          <div class="pedigree-leaf pedigree-leaf-4">{stallion.pedigree.damDam}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINES -->
+  <section class="lines">
+    <div class="lines-inner">
+      <div class="lines-col lines-col-male">
+        <h2 class="lines-title reveal">Sire</h2>
+
+        {stallion.maleLine && (
+          <p class="lines-desc reveal" style="transition-delay: 0.1s">
+            <strong set:html={stallion.maleLine.heading} />{' '}
+            <span set:html={stallion.maleLine.text} />
+          </p>
+        )}
+      </div>
+      <div class="lines-col lines-col-female">
+        <h2 class="lines-title reveal" style="transition-delay: 0.1s">First Dam</h2>
+
+        {stallion.femaleLine && (
+          <p class="lines-desc reveal" style="transition-delay: 0.2s">
+            <strong set:html={stallion.femaleLine.heading} />{' '}
+            <span set:html={stallion.femaleLine.text} />
+          </p>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  {stallion.gallery && stallion.gallery.length > 0 && (
+    <section class="gallery">
+      <div class="gallery-inner">
+        <div class="gallery-track">
+          {stallion.gallery.map((src) => (
+            <div class="gallery-slide">
+              <img src={src} alt={stallion.name} loading="lazy" />
+            </div>
+          ))}
+        </div>
+        <button class="gallery-arrow gallery-prev" type="button" aria-label="Previous photo">&#8249;</button>
+        <button class="gallery-arrow gallery-next" type="button" aria-label="Next photo">&#8250;</button>
+      </div>
+    </section>
+  )}
+
+  <!-- BREEDING INFO -->
+  <section class="breeding-band">
+    <div class="breeding-inner">
+      <div class="breeding-price reveal" set:html={stallion.studFee} />
+      <div class="breeding-panel reveal" style="transition-delay: 0.1s">6 Panel Test N/N</div>
+      <div class="breeding-semen reveal" style="transition-delay: 0.15s">Fresh/Cooled/Frozen Semen Available</div>
+
+      {stallion.distributors && stallion.distributors.length > 0 && (
+        <div class="breeding-links reveal" style="transition-delay: 0.2s">
+          {stallion.distributors.map((d) => (
+            <a
+              href={d.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={`breeding-link${d.primary ? ' is-primary' : ''}`}
+            >
+              {d.label} &rarr;
+            </a>
+          ))}
+        </div>
+      )}
+
+      <div class="breeding-eligible reveal" style="transition-delay: 0.25s">
+        Foals Eligible for IRHBA &ndash; NRHA Germany &ndash; NRHA Belgium &ndash; NRBC &ndash; The Invitational &ndash; 100X Stakes
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  {stallion.videoId && (
+    <section class="stallion-video">
+      <div class="video-inner">
+        <div class="video-frame reveal">
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${stallion.videoId}`}
+            title={`${stallion.name} video`}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+  )}
+</Layout>
+
+<script>
+  document.querySelectorAll('.gallery').forEach((gallery) => {
+    const track = gallery.querySelector('.gallery-track');
+    const prev = gallery.querySelector('.gallery-prev');
+    const next = gallery.querySelector('.gallery-next');
+    if (!track) return;
+
+    const scrollByAmount = () => {
+      const slide = track.querySelector('.gallery-slide');
+      return slide ? slide.getBoundingClientRect().width + 20 : 360;
+    };
+
+    prev?.addEventListener('click', () => {
+      track.scrollBy({ left: -scrollByAmount(), behavior: 'smooth' });
+    });
+    next?.addEventListener('click', () => {
+      track.scrollBy({ left: scrollByAmount(), behavior: 'smooth' });
+    });
+  });
+</script>
+
+<style>
+  /* =====================
+     HERO
+  ===================== */
+  .stallion-hero {
+    position: relative;
+    height: 62vh;
+    min-height: 460px;
+    display: flex;
+    align-items: flex-end;
+    overflow: visible;
+  }
+
+  .stallion-hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .stallion-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 35%, rgba(0,0,0,0.85) 100%);
+  }
+
+  .stallion-hero-portrait {
+    position: absolute;
+    z-index: 3;
+    top: 96px;
+    bottom: -104px;
+    right: calc(var(--px) + 90px);
+    width: 400px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+  }
+
+  .stallion-hero-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .stallion-hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--px) 56px;
+  }
+
+  .stallion-hero-logo {
+    width: 260px;
+    height: auto;
+    margin-bottom: 24px;
+  }
+
+  .stallion-hero-name {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--white);
+    font-size: clamp(2.6rem, 6.5vw, 5rem);
+    text-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+
+  .stallion-hero-subtitle {
+    display: block;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1rem;
+    color: var(--gold);
+    margin-top: 10px;
+  }
+
+  /* =====================
+     STALLION PASSPORT
+  ===================== */
+  .stallion-body {
+    background: var(--white);
+    padding: 48px var(--px) 40px;
+  }
+
+  .passport {
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .passport-header { margin-bottom: 48px; }
+
+  .passport-facts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 760px;
+  }
+
+  .passport-facts > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .passport-facts dt {
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.9rem;
+    color: var(--gray);
+    white-space: nowrap;
+  }
+
+  .passport-facts dd {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--black);
+    text-align: right;
+  }
+
+  /* =====================
+     EARNER OF
+  ===================== */
+  .earner {
+    background: var(--white);
+    padding: 56px var(--px) 64px;
+  }
+
+  .earner-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .earner-label {
+    display: block;
+    font-family: var(--font-gotham);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1.1rem;
+    color: var(--gold-dark);
+    margin-bottom: 8px;
+  }
+
+  .earner-amount {
+    font-family: var(--font-gotham);
+    font-weight: 900;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: var(--black);
+    margin-bottom: 22px;
+  }
+
+  .palmares {
+    list-style: none;
+    margin: 0;
+    columns: 2;
+    column-gap: 56px;
+    text-align: left;
+  }
+
+  .palmares li {
+    font-family: var(--font-gotham);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    color: var(--gray-dk);
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+    break-inside: avoid;
+  }
+
+  .palmares-more {
+    color: var(--gray) !important;
+    font-style: italic;
+    border-bottom: none !important;
+  }
+
+  /* =====================
+     PEDIGREE
+  ===================== */
+  .pedigree-band {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    padding: 56px var(--px) 64px;
+  }
+
+  .pedigree-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .pedigree-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pedigree-tree {
+    display: grid;
+    grid-template-columns: minmax(200px, 1.2fr) 130px minmax(170px, 1fr) 130px minmax(150px, 1fr);
+    grid-template-rows: repeat(4, minmax(47px, auto));
+  }
+
+  .pedigree-name {
+    grid-column: 1;
+    grid-row: 1 / 5;
+    display: flex;
+    align-items: center;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--white);
+    padding-right: 12px;
+  }
+
+  .pedigree-sire,
+  .pedigree-dam {
+    grid-column: 3;
+    display: flex;
+    align-items: center;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+    color: var(--white);
+    padding: 0 12px;
+  }
+
+  .pedigree-sire { grid-row: 1 / 3; }
+  .pedigree-dam { grid-row: 3 / 5; }
+
+  .pedigree-leaf {
+    grid-column: 5;
+    display: flex;
+    align-items: center;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.72);
+    padding-left: 12px;
+  }
+
+  .pedigree-leaf-1 { grid-row: 1; }
+  .pedigree-leaf-2 { grid-row: 2; }
+  .pedigree-leaf-3 { grid-row: 3; }
+  .pedigree-leaf-4 { grid-row: 4; }
+
+  .pedigree-bracket { position: relative; }
+  .pedigree-bracket-1 { grid-column: 2; grid-row: 1 / 5; }
+  .pedigree-bracket-2a { grid-column: 4; grid-row: 1 / 3; }
+  .pedigree-bracket-2b { grid-column: 4; grid-row: 3 / 5; }
+
+  .pb-spine {
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    bottom: 25%;
+    width: 0;
+    border-left: 2px solid rgba(255,255,255,0.6);
+  }
+
+  .pb-line {
+    position: absolute;
+    height: 0;
+    border-top: 2px solid rgba(255,255,255,0.6);
+  }
+
+  .pb-top,
+  .pb-bottom {
+    right: 0;
+    width: 65px;
+  }
+
+  .pb-top { top: 25%; }
+  .pb-bottom { top: 75%; }
+
+  .pb-mid {
+    top: 50%;
+    left: 0;
+    width: 56px;
+  }
+
+  @media (max-width: 900px) {
+    .pedigree-tree {
+      grid-template-columns: minmax(170px, 1.2fr) 96px minmax(150px, 1fr) 96px minmax(140px, 1fr);
+      min-width: 780px;
+      column-gap: 0;
+    }
+
+    .pedigree-name { font-size: 1.5rem; }
+    .pedigree-sire,
+    .pedigree-dam { font-size: 1rem; }
+    .pedigree-leaf { font-size: 0.85rem; }
+
+    .pb-top,
+    .pb-bottom { width: 48px; }
+    .pb-mid { width: 40px; }
+  }
+
+  @media (max-width: 900px) {
+    .stallion-hero-portrait {
+      top: 72px;
+      bottom: auto;
+      right: var(--px);
+      width: 110px;
+      aspect-ratio: 400 / 566;
+      border-radius: 10px;
+    }
+
+    .palmares { columns: 1; }
+    .palmares li { font-size: 0.9rem; }
+  }
+
+  /* =====================
+     LINES
+  ===================== */
+  .lines {
+    background: var(--white);
+    padding: 72px var(--px) 96px;
+  }
+
+  .lines-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 64px;
+  }
+
+  .lines-col-male { border-right: 1px solid var(--border); padding-right: 64px; }
+  .lines-col-female { padding-left: 0; }
+
+  .lines-title {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: clamp(1.3rem, 2vw, 1.7rem);
+    color: var(--black);
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--gold);
+  }
+
+  .lines-desc {
+    margin-top: 32px;
+    font-family: var(--font-thin);
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    letter-spacing: 0.1px;
+    color: var(--gray-dk);
+  }
+
+  .lines-desc strong {
+    font-family: var(--font-gotham);
+    color: var(--black);
+    font-weight: 700;
+  }
+
+  @media (max-width: 900px) {
+    .lines-inner {
+      grid-template-columns: 1fr;
+      row-gap: 48px;
+    }
+
+    .lines-col-male {
+      border-right: none;
+      padding-right: 0;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 32px;
+    }
+  }
+
+  /* =====================
+     GALLERY
+  ===================== */
+  .gallery {
+    background: var(--white);
+    padding: 72px var(--px) 88px;
+  }
+
+  .gallery-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .gallery-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .gallery-track::-webkit-scrollbar { display: none; }
+
+  .gallery-slide {
+    flex: 0 0 auto;
+    width: 380px;
+    max-width: 80vw;
+    aspect-ratio: 4 / 3;
+    border-radius: 14px;
+    overflow: hidden;
+    scroll-snap-align: start;
+  }
+
+  .gallery-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 1px solid var(--border);
+    color: var(--black);
+    font-size: 1.4rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+
+  .gallery-prev { left: -24px; }
+  .gallery-next { right: -24px; }
+
+  @media (max-width: 900px) {
+    .gallery-arrow { display: none; }
+  }
+
+  /* =====================
+     BREEDING INFO
+  ===================== */
+  .breeding-band {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    padding: 56px var(--px) 64px;
+  }
+
+  .breeding-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .breeding-price {
+    font-family: var(--font-gotham);
+    font-weight: 900;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .breeding-semen {
+    font-family: var(--font-thin);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.85);
+    margin-top: 22px;
+  }
+
+  .breeding-panel {
+    font-family: var(--font-thin);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.7);
+    margin-top: 10px;
+  }
+
+  .breeding-links {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    row-gap: 12px;
+    column-gap: 32px;
+  }
+
+  .breeding-link {
+    font-family: var(--font-gotham);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    color: var(--white);
+    text-decoration: none;
+    text-underline-offset: 4px;
+    transition: text-decoration-color 0.25s var(--ease);
+  }
+
+  .breeding-link:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--white);
+  }
+
+  .breeding-eligible {
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    font-family: var(--font-thin);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.75);
+  }
+
+  /* =====================
+     VIDEO
+  ===================== */
+  .stallion-video {
+    background: var(--white);
+    padding: 72px var(--px) 96px;
+  }
+
+  .video-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.15);
+  }
+
+  .video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>
