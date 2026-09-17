@@ -26,11 +26,11 @@ pnpm-debug.log*
 # Local Netlify folder
 .netlify
 
-# Reference/working files, not part of the site
-307533098_529859959142583_5065746822685289531_n.png
-307533098_529859959142583_5065746822685289531_n.svg
-468761242_18253337878256644_5588781761282699377_n.jpg
-IMG_2725.jpg
-font e colori.docx
-logo.af
-logo.png
+# Reference/working files, not part of the site (root only — not public/)
+/307533098_529859959142583_5065746822685289531_n.png
+/307533098_529859959142583_5065746822685289531_n.svg
+/468761242_18253337878256644_5588781761282699377_n.jpg
+/IMG_2725.jpg
+/font e colori.docx
+/logo.af
+/logo.png
