@@ -300,6 +300,10 @@ const photos = [horse.image, ...(horse.gallery ?? [])];
     border-bottom: 1px solid var(--border);
   }
 
+  .horse-facts > div:last-child {
+    border-bottom: none;
+  }
+
   .horse-facts dt {
     font-family: var(--font-body);
     text-transform: uppercase;
