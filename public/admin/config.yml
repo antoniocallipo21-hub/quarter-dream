@@ -35,7 +35,7 @@ collections:
       - { label: "Titolo", name: "title", widget: "string" }
       - { label: "Data", name: "date", widget: "datetime" }
       - { label: "Immagine principale", name: "image", widget: "image" }
-      - { label: "Riassunto", name: "excerpt", widget: "text" }
+      - { label: "Riassunto", name: "excerpt", widget: "text", required: false }
       - { label: "Galleria (facoltativa, 2-3 foto)", name: "gallery", widget: "list", field: { label: "Foto", name: "photo", widget: "image" }, required: false }
       - { label: "Contenuto", name: "body", widget: "markdown" }
 
