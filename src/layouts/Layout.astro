@@ -207,6 +207,10 @@ const menuStallions = ['sugar-little-step', 'colonels-dancing-gun', 'hollys-hija
 
           el.style.fontSize = `${newSize}px`;
         });
+        // Text resizing can change section heights (e.g. the script "Owner"
+        // title), which Lenis needs to know about or its virtual scroll
+        // height goes stale and leaves a gap between sections.
+        lenis.resize();
       };
       document.fonts.ready.then(fitText);
       window.addEventListener('resize', fitText);
