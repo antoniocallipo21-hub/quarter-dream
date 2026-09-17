@@ -1,10 +1,8 @@
 ---
-name: "Show Horse 2"
+name: "Gunner Be Step"
 category: "show-horses"
-image: "/images/horse-portrait.jpg"
+image: "/images/horse-running.jpg"
 subtitle: "Show Horse"
-born: "2019"
-color: "Bay"
 registry: "AQHA"
 owner: "Quarter Dream SRL"
 breeder: "Quarter Dream SRL"

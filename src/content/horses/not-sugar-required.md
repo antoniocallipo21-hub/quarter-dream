@@ -1,10 +1,8 @@
 ---
-name: "Weanling 1"
+name: "Not Sugar Required"
 category: "weanlings"
 image: "/images/horse-portrait.jpg"
 subtitle: "Weanling"
-born: "2026"
-color: "Sorrel"
 registry: "AQHA"
 owner: "Quarter Dream SRL"
 breeder: "Quarter Dream SRL"

@@ -1,10 +1,8 @@
 ---
-name: "Show Horse 1"
+name: "Wimpys In A Hurry"
 category: "show-horses"
-image: "/images/horse-running.jpg"
+image: "/images/horse-brown.jpg"
 subtitle: "Show Horse"
-born: "2020"
-color: "Sorrel"
 registry: "AQHA"
 owner: "Quarter Dream SRL"
 breeder: "Quarter Dream SRL"

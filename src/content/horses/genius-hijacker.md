@@ -1,10 +1,8 @@
 ---
-name: "Weanling 3"
+name: "Genius Hijacker"
 category: "weanlings"
-image: "/images/horse-stable.jpg"
+image: "/images/horse-brown.jpg"
 subtitle: "Weanling"
-born: "2026"
-color: "Palomino"
 registry: "AQHA"
 owner: "Quarter Dream SRL"
 breeder: "Quarter Dream SRL"

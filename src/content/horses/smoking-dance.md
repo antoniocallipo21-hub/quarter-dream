@@ -1,10 +1,8 @@
 ---
-name: "Show Horse 3"
+name: "Smoking Dance"
 category: "show-horses"
-image: "/images/horse-brown.jpg"
+image: "/images/horse-portrait.jpg"
 subtitle: "Show Horse"
-born: "2021"
-color: "Chestnut"
 registry: "AQHA"
 owner: "Quarter Dream SRL"
 breeder: "Quarter Dream SRL"

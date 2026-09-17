@@ -1,10 +1,8 @@
 ---
-name: "Three Year Old 1"
-category: "three-years-old"
+name: "A Spark Of Dance"
+category: "weanlings"
 image: "/images/horse-stable.jpg"
-subtitle: "Three Years Old"
-born: "2023"
-color: "Sorrel"
+subtitle: "Weanling"
 registry: "AQHA"
 owner: "Quarter Dream SRL"
 breeder: "Quarter Dream SRL"

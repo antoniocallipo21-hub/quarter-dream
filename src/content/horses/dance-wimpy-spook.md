@@ -1,10 +1,8 @@
 ---
-name: "Broodmare 2"
+name: "Dance Wimpy Spook"
 category: "broodmares"
 image: "/images/horse-brown.jpg"
 subtitle: "Broodmare"
-born: "2014"
-color: "Bay"
 registry: "AQHA"
 owner: "Quarter Dream SRL"
 breeder: "Quarter Dream SRL"

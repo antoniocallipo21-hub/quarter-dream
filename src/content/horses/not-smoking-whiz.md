@@ -1,10 +1,8 @@
 ---
-name: "Broodmare 1"
+name: "Not Smoking Whiz"
 category: "broodmares"
-image: "/images/horse-portrait.jpg"
+image: "/images/horse-stable.jpg"
 subtitle: "Broodmare"
-born: "2015"
-color: "Sorrel"
 registry: "AQHA"
 owner: "Quarter Dream SRL"
 breeder: "Quarter Dream SRL"

@@ -1,10 +1,8 @@
 ---
-name: "Broodmare 3"
+name: "Agrayvintagechick PC"
 category: "broodmares"
-image: "/images/horse-stable.jpg"
+image: "/images/horse-portrait.jpg"
 subtitle: "Broodmare"
-born: "2016"
-color: "Palomino"
 registry: "AQHA"
 owner: "Quarter Dream SRL"
 breeder: "Quarter Dream SRL"

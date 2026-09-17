@@ -1,10 +1,8 @@
 ---
-name: "Three Year Old 2"
+name: "Danceisastar"
 category: "three-years-old"
-image: "/images/horse-running.jpg"
+image: "/images/horse-portrait.jpg"
 subtitle: "Three Years Old"
-born: "2023"
-color: "Bay"
 registry: "AQHA"
 owner: "Quarter Dream SRL"
 breeder: "Quarter Dream SRL"

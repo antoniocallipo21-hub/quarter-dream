@@ -1,10 +1,8 @@
 ---
-name: "Three Year Old 3"
+name: "GH Holly Dunit"
 category: "three-years-old"
-image: "/images/horse-portrait.jpg"
+image: "/images/horse-running.jpg"
 subtitle: "Three Years Old"
-born: "2023"
-color: "Palomino"
 registry: "AQHA"
 owner: "Quarter Dream SRL"
 breeder: "Quarter Dream SRL"

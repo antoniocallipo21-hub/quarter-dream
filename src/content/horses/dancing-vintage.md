@@ -1,10 +1,8 @@
 ---
-name: "Two Year Old 2"
+name: "Dancing Vintage"
 category: "two-years-old"
 image: "/images/horse-stable.jpg"
 subtitle: "Two Years Old"
-born: "2024"
-color: "Bay"
 registry: "AQHA"
 owner: "Quarter Dream SRL"
 breeder: "Quarter Dream SRL"
