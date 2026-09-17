@@ -1,7 +1,7 @@
 ---
-title: "NRHA European Futurity 2026 · Fiera di Cremona"
+title: NRHA European Futurity 2026 · Fiera di Cremona
 date: 2026-05-27
-image: "/images/horse-brown.jpg"
+image: /images/uploads/foto-29-07-26-15-43-35-2.jpg
 ---
 
 The NRHA European Futurity 2026 took place at the Fiera di Cremona, gathering some of the best reining horses and riders from across Europe.
