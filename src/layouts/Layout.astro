@@ -26,6 +26,18 @@ const menuStallions = ['sugar-little-step', 'colonels-dancing-gun', 'hollys-hija
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300&display=swap" rel="stylesheet" />
     <title>{title !== 'Quarter Dream' ? `${title} | Quarter Dream` : 'Quarter Dream – NRHA Reining Horse Breeders'}</title>
+
+    <script is:inline>
+      // Netlify Identity invite/recovery links point at the bare domain;
+      // only /admin loads the widget that can process the token, so bounce there.
+      (function () {
+        var hash = window.location.hash;
+        var isIdentityToken = /invite_token=|recovery_token=|confirmation_token=|email_change_token=/.test(hash);
+        if (isIdentityToken && window.location.pathname.indexOf('/admin') !== 0) {
+          window.location.replace('/admin/' + hash);
+        }
+      })();
+    </script>
   </head>
   <body>
 
