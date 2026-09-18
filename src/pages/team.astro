@@ -1,11 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
 
-const team = [
-  { name: 'Team Member', role: 'Role', image: '' },
-  { name: 'Team Member', role: 'Role', image: '' },
-  { name: 'Team Member', role: 'Role', image: '' },
-];
+const teamEntries = await getCollection('team');
+const team = teamEntries
+  .map((entry) => entry.data)
+  .sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
 ---
 
 <Layout title="Team">
@@ -17,17 +17,21 @@ const team = [
   <!-- TEAM GRID -->
   <section class="team-body">
     <div class="team-inner">
-      <div class="team-grid">
-        {team.map((person, i) => (
-          <div class="team-card reveal" style={`transition-delay: ${0.05 + i * 0.1}s`}>
-            <div class="team-card-photo">
-              {person.image && <img src={person.image} alt={person.name} />}
+      {team.length === 0 ? (
+        <p class="team-empty reveal">Team coming soon.</p>
+      ) : (
+        <div class="team-grid">
+          {team.map((person, i) => (
+            <div class="team-card reveal" style={`transition-delay: ${0.05 + i * 0.1}s`}>
+              <div class="team-card-photo">
+                {person.photo && <img src={person.photo} alt={person.name} />}
+              </div>
+              <h3 class="team-card-name">{person.name}</h3>
+              <span class="team-card-role">{person.role}</span>
             </div>
-            <h3 class="team-card-name">{person.name}</h3>
-            <span class="team-card-role">{person.role}</span>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   </section>
 </Layout>
@@ -67,6 +71,16 @@ const team = [
   .team-inner {
     max-width: var(--max-w);
     margin: 0 auto;
+  }
+
+  .team-empty {
+    font-family: var(--font-thin);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gray);
+    text-align: center;
+    padding: 40px 0;
   }
 
   .team-grid {
