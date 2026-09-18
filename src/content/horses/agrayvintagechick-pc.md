@@ -1,6 +1,6 @@
 ---
 name: "Agrayvintagechick PC"
-category: "broodmares"
+categories: ["broodmares", "show-horses"]
 image: "/images/horse-portrait.jpg"
 subtitle: "Mare"
 born: "May 22, 2018"

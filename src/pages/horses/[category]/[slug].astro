@@ -5,16 +5,18 @@ import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const allHorses = await getCollection('horses');
-  return allHorses.map((entry) => ({
-    params: { category: entry.data.category, slug: entry.id },
-    props: { entry },
-  }));
+  return allHorses.flatMap((entry) =>
+    entry.data.categories.map((category) => ({
+      params: { category, slug: entry.id },
+      props: { entry, category },
+    }))
+  );
 }
 
-const { entry } = Astro.props;
+const { entry, category } = Astro.props;
 const horse = entry.data;
 const { Content } = await render(entry);
-const categoryLabel = horseCategories.find((c) => c.slug === horse.category)?.label ?? '';
+const categoryLabel = horseCategories.find((c) => c.slug === category)?.label ?? '';
 
 const photos = [horse.image, ...(horse.gallery ?? [])];
 ---

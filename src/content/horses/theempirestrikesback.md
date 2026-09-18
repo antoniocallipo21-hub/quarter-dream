@@ -1,6 +1,6 @@
 ---
 name: "Theempirestrikesback"
-category: "two-years-old"
+categories: ["two-years-old"]
 image: "/images/horse-running.jpg"
 subtitle: "Stallion"
 born: "May 30, 2024"

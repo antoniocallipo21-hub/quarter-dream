@@ -1,6 +1,6 @@
 ---
 name: "Danceisastar"
-category: "three-years-old"
+categories: ["three-years-old"]
 image: "/images/horse-portrait.jpg"
 subtitle: "Mare"
 born: "May 6, 2023"

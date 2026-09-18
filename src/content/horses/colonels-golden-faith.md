@@ -1,6 +1,6 @@
 ---
 name: "Colonels Golden Faith"
-category: "two-years-old"
+categories: ["two-years-old"]
 image: "/images/horse-brown.jpg"
 subtitle: "Stallion"
 born: "June 10, 2024"

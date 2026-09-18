@@ -1,6 +1,6 @@
 ---
 name: "Cromed Hijacker"
-category: "three-years-old"
+categories: ["three-years-old"]
 image: "/images/horse-stable.jpg"
 subtitle: "Mare"
 born: "May 24, 2023"

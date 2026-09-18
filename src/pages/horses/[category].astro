@@ -13,7 +13,7 @@ export function getStaticPaths() {
 const { cat } = Astro.props;
 const allHorses = await getCollection('horses');
 const categoryHorses = allHorses
-  .filter((h) => h.data.category === cat.slug)
+  .filter((h) => h.data.categories.includes(cat.slug))
   .map((h) => ({ slug: h.id, ...h.data }));
 ---
 

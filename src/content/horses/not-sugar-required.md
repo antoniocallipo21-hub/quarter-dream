@@ -1,6 +1,6 @@
 ---
 name: "Not Sugar Required"
-category: "weanlings"
+categories: ["weanlings"]
 image: "/images/horse-portrait.jpg"
 subtitle: "Colt"
 born: "May 3, 2026"

@@ -46,9 +46,10 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Nome", name: "name", widget: "string" }
-      - label: "Categoria"
-        name: "category"
+      - label: "Categorie (puoi selezionarne pi\xF9 di una)"
+        name: "categories"
         widget: "select"
+        multiple: true
         options:
           - { label: "Broodmares", value: "broodmares" }
           - { label: "Show Horses", value: "show-horses" }

@@ -1,6 +1,6 @@
 ---
 name: "Dancing Vintage"
-category: "two-years-old"
+categories: ["two-years-old"]
 image: "/images/horse-stable.jpg"
 subtitle: "Mare"
 born: "June 3, 2024"

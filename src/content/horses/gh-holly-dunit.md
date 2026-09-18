@@ -1,6 +1,6 @@
 ---
 name: "GH Holly Dunit"
-category: "three-years-old"
+categories: ["three-years-old"]
 image: "/images/horse-running.jpg"
 subtitle: "Stallion"
 born: "May 10, 2023"

@@ -1,6 +1,6 @@
 ---
 name: "A Spark Of Dance"
-category: "weanlings"
+categories: ["weanlings"]
 image: "/images/horse-stable.jpg"
 subtitle: "Filly"
 born: "April 14, 2026"

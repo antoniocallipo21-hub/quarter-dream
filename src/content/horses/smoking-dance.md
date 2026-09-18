@@ -1,6 +1,6 @@
 ---
 name: "Smoking Dance"
-category: "show-horses"
+categories: ["show-horses"]
 image: "/images/horse-portrait.jpg"
 subtitle: "Mare"
 born: "June 8, 2022"

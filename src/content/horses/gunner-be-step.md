@@ -1,6 +1,6 @@
 ---
 name: "Gunner Be Step"
-category: "show-horses"
+categories: ["show-horses"]
 image: "/images/horse-running.jpg"
 subtitle: "Gelding"
 born: "January 4, 2020"

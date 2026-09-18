@@ -1,6 +1,6 @@
 ---
 name: "Dance Wimpy Spook"
-category: "broodmares"
+categories: ["broodmares", "show-horses"]
 image: "/images/horse-brown.jpg"
 subtitle: "Mare"
 born: "April 23, 2017"

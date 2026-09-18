@@ -1,6 +1,6 @@
 ---
 name: "Wimpys In A Hurry"
-category: "show-horses"
+categories: ["show-horses"]
 image: "/images/horse-brown.jpg"
 subtitle: "Gelding"
 born: "June 4, 2022"

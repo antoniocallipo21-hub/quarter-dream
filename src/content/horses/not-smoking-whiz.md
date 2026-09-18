@@ -1,6 +1,6 @@
 ---
 name: "Not Smoking Whiz"
-category: "broodmares"
+categories: ["broodmares"]
 image: "/images/horse-stable.jpg"
 subtitle: "Mare"
 born: "February 21, 2022"
