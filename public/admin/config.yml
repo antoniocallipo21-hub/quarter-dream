@@ -1,6 +1,10 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: antoniocallipo21-hub/quarter-dream
   branch: main
+  # TODO: replace with the real production URL once the Vercel deploy is live
+  base_url: https://REPLACE-WITH-VERCEL-DOMAIN.vercel.app
+  auth_endpoint: api/auth
 
 # Cartella dove Decap CMS salva le immagini caricate dal cliente
 media_folder: "public/images/uploads"
