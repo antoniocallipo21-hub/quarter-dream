@@ -51,7 +51,7 @@ const team = defineCollection({
     name: z.string(),
     role: z.string(),
     photo: z.string().optional(),
-    order: z.number().optional(),
+    order: z.preprocess((v) => (v === '' || v === null ? undefined : v), z.number().optional()),
   }),
 });
 

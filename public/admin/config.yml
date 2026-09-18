@@ -68,7 +68,8 @@ collections:
     label: "Team"
     folder: "src/content/team"
     create: true
-    slug: "{{slug}}"
+    identifier_field: name
+    slug: "{{name}}"
     fields:
       - { label: "Nome", name: "name", widget: "string" }
       - { label: "Ruolo", name: "role", widget: "string" }
@@ -79,7 +80,8 @@ collections:
     label: "Horses"
     folder: "src/content/horses"
     create: true
-    slug: "{{slug}}"
+    identifier_field: name
+    slug: "{{name}}"
     fields:
       - { label: "Nome", name: "name", widget: "string" }
       - label: "Categorie (puoi selezionarne pi\xF9 di una)"
@@ -126,7 +128,8 @@ collections:
     label: "Stallions"
     folder: "src/content/stallions"
     create: true
-    slug: "{{slug}}"
+    identifier_field: name
+    slug: "{{name}}"
     fields:
       - { label: "Nome", name: "name", widget: "string" }
       - { label: "Mantello", name: "color", widget: "string" }
