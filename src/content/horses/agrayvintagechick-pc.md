@@ -32,8 +32,7 @@ achievements:
   - "2024 · AVCR Spring Fever L4 Open Finalist 5th Place"
   - "2024 · Golden Circle L4 Open Finalist"
 progeny:
-  - "Dancing Vintage (2024 Filly)"
-  - "A Sparkling Sugar (2023 Colt)"
+  - "2023 A Sparkling Sugar · QH Colt · by Sugar Little Step"
 bredTo:
   - label: "ET#1"
     sire: "Sugar Little Step"
