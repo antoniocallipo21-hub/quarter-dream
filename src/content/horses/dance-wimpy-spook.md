@@ -1,7 +1,7 @@
 ---
 name: "Dance Wimpy Spook"
 categories: ["broodmares", "show-horses"]
-image: "/images/horse-brown.jpg"
+image: "/images/uploads/dance-wimpy-spook-1.jpg"
 subtitle: "Mare"
 born: "April 23, 2017"
 color: "Sorrel"
@@ -32,6 +32,13 @@ achievements:
   - "2024 · IRHA Maturity & Gold Circle Finalist"
   - "2024 · ACCR 2.0 7th Show L4 Open 3th place"
 pe: "$3,424.73"
+gallery:
+  - "/images/uploads/dance-wimpy-spook-2.png"
+  - "/images/uploads/dance-wimpy-spook-3.jpg"
+  - "/images/uploads/dance-wimpy-spook-4.jpg"
+  - "/images/uploads/dance-wimpy-spook-5.jpg"
+  - "/images/uploads/dance-wimpy-spook-6.jpg"
+  - "/images/uploads/dance-wimpy-spook-7.jpg"
 progeny:
   - "2022 HOLLYWOOD N DANCE · QH Dun Mare · by Hollywood Dun It (ET)"
   - "2023 AMERICASNEXTSPOOK · QH Sorrel Colt · by Americasnexttopgun (ET)"
