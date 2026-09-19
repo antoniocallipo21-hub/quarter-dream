@@ -1,7 +1,7 @@
 ---
 name: "Not Smoking Whiz"
 categories: ["broodmares"]
-image: "/images/uploads/not-smoking-whiz-1.jpg"
+image: "/images/uploads/not-smoking-whiz-2.jpg"
 subtitle: "Mare"
 born: "February 21, 2022"
 color: "Sorrel"
@@ -18,7 +18,7 @@ programs:
   - "NRHA"
   - "SSP"
 gallery:
-  - "/images/uploads/not-smoking-whiz-2.jpg"
+  - "/images/uploads/not-smoking-whiz-1.jpg"
 progeny:
   - "Not Sugar Required (2026 Colt)"
 bredTo:
