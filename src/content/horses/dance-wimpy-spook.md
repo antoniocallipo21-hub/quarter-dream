@@ -1,7 +1,7 @@
 ---
 name: "Dance Wimpy Spook"
 categories: ["broodmares", "show-horses"]
-image: "/images/uploads/dance-wimpy-spook-1.jpg"
+image: "/images/uploads/dance-wimpy-spook-2.png"
 subtitle: "Mare"
 born: "April 23, 2017"
 color: "Sorrel"
@@ -33,7 +33,7 @@ achievements:
   - "2024 · ACCR 2.0 7th Show L4 Open 3th place"
 pe: "$3,424.73"
 gallery:
-  - "/images/uploads/dance-wimpy-spook-2.png"
+  - "/images/uploads/dance-wimpy-spook-1.jpg"
   - "/images/uploads/dance-wimpy-spook-3.jpg"
   - "/images/uploads/dance-wimpy-spook-4.jpg"
   - "/images/uploads/dance-wimpy-spook-5.jpg"
