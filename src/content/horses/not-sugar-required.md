@@ -1,7 +1,7 @@
 ---
 name: "Not Sugar Required"
 categories: ["weanlings"]
-image: "/images/horse-portrait.jpg"
+image: "/images/uploads/picture-coming-soon.png"
 subtitle: "Colt"
 born: "May 3, 2026"
 color: "Sorrel"

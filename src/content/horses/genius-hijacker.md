@@ -1,7 +1,7 @@
 ---
 name: "Genius Hijacker"
 categories: ["weanlings"]
-image: "/images/horse-brown.jpg"
+image: "/images/uploads/picture-coming-soon.png"
 subtitle: "Colt"
 born: "May 1, 2026"
 color: "Bay"

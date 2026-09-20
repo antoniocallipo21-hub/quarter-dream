@@ -1,7 +1,7 @@
 ---
 name: "A Spark Of Dance"
 categories: ["weanlings"]
-image: "/images/horse-stable.jpg"
+image: "/images/uploads/picture-coming-soon.png"
 subtitle: "Filly"
 born: "April 14, 2026"
 color: "Buckskin"
