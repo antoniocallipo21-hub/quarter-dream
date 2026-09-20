@@ -1,7 +1,7 @@
 ---
 name: "Theempirestrikesback"
 categories: ["two-years-old"]
-image: "/images/horse-running.jpg"
+image: "/images/uploads/picture-coming-soon.png"
 subtitle: "Stallion"
 born: "May 30, 2024"
 color: "Bay"

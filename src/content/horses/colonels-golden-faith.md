@@ -1,7 +1,7 @@
 ---
 name: "Colonels Golden Faith"
 categories: ["two-years-old"]
-image: "/images/horse-brown.jpg"
+image: "/images/uploads/colonels-golden-faith-1.jpg"
 subtitle: "Stallion"
 born: "June 10, 2024"
 color: "Sorrel"
@@ -13,6 +13,8 @@ dam: "Jac Golden Faith"
 sireDam: "Dance Little Spook"
 damSire: "Jac O Rima"
 damDam: "Solano Cody"
+gallery:
+  - "/images/uploads/colonels-golden-faith-2.jpg"
 programs:
   - "IRHBA"
   - "NRHA"

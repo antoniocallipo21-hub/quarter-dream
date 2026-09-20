@@ -1,7 +1,7 @@
 ---
 name: "Dancing Vintage"
 categories: ["two-years-old"]
-image: "/images/horse-stable.jpg"
+image: "/images/uploads/picture-coming-soon.png"
 subtitle: "Mare"
 born: "June 3, 2024"
 color: "Sorrel"
