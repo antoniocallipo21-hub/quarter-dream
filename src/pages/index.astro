@@ -563,7 +563,15 @@ const news = newsEntries
       display: none;
     }
 
-    .hero,
+    .hero {
+      position: relative;
+      inset: auto;
+      height: auto;
+      min-height: 100vh;
+      overflow: visible;
+      box-shadow: none;
+    }
+
     .achieve,
     .achieve.is-pinned {
       position: static;
