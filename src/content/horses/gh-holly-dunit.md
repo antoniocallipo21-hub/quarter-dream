@@ -1,7 +1,7 @@
 ---
 name: "GH Holly Dunit"
 categories: ["three-years-old"]
-image: "/images/horse-running.jpg"
+image: "/images/uploads/gh-holly-dunit-1.jpg"
 subtitle: "Stallion"
 born: "May 10, 2023"
 color: "Bay"
@@ -14,6 +14,8 @@ sireSire: "HF Mobster"
 sireDam: "Conquista Holly"
 damSire: "Spooks Gotta Whiz"
 damDam: "Donnola Chex"
+gallery:
+  - "/images/uploads/gh-holly-dunit-2.png"
 programs:
   - "NRHA European/North American Nomination"
   - "NRHA SSP Germany"
