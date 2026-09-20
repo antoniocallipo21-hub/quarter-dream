@@ -17,6 +17,8 @@ gallery:
   - "/images/uploads/gunner-be-step-2.jpg"
   - "/images/uploads/gunner-be-step-3.jpg"
   - "/images/uploads/gunner-be-step-4.jpg"
+  - "/images/uploads/gunner-be-step-5.jpg"
+  - "/images/uploads/gunner-be-step-6.jpg"
 programs:
   - "NRHA European/North American Nomination"
   - "NRBC"
