@@ -19,6 +19,7 @@ programs:
   - "NRHA SSP Germany"
   - "IRHBA Derby"
 lte: "$74,090.13"
+highlight: "2023 NRHA/IRHA/IRHBA FUTURITY 3Y L4 OPEN CHAMPION WITH A SCORE OF 226!!"
 achievements:
   - "2023 · NRHA 3YRS Old Dell’Adriatico L4 Open Re-Champion (144)"
   - "2023 · NRHA Roleski 4 Spins 3 Yrs Old Futurity L4 Open 7th Place (217)"

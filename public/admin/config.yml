@@ -110,6 +110,7 @@ collections:
       - { label: "Nonna materna", name: "damDam", widget: "string", required: false }
       - { label: "Programmi (es. IRHBA, NRHA Germany...)", name: "programs", widget: "list", field: { label: "Programma", name: "program", widget: "string" }, required: false }
       - { label: "LTE (guadagni in carriera)", name: "lte", widget: "string", required: false }
+      - { label: "Menzione speciale (risultato in evidenza, facoltativo)", name: "highlight", widget: "string", required: false }
       - { label: "Palmares", name: "achievements", widget: "list", field: { label: "Risultato", name: "result", widget: "string" }, required: false }
       - { label: "PE (guadagni dei figli)", name: "pe", widget: "string", required: false }
       - { label: "Figli (Progeny)", name: "progeny", widget: "list", field: { label: "Nome", name: "foal", widget: "string" }, required: false }

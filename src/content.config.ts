@@ -33,6 +33,7 @@ const horses = defineCollection({
     damDam: z.string().optional(),
     programs: z.array(z.string()).optional(),
     lte: z.string().optional(),
+    highlight: z.string().optional(),
     achievements: z.array(z.string()).optional(),
     pe: z.string().optional(),
     progeny: z.array(z.string()).optional(),

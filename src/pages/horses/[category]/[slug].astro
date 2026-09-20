@@ -120,6 +120,10 @@ const photos = [horse.image, ...(horse.gallery ?? [])];
         <span class="earner-label reveal">Earner Of</span>
         <h2 class="earner-amount reveal" style="transition-delay: 0.1s">{horse.lte}</h2>
 
+        {horse.highlight && (
+          <p class="earner-highlight reveal" style="transition-delay: 0.15s">{horse.highlight}</p>
+        )}
+
         {horse.achievements && horse.achievements.length > 0 && (
           <ul class="palmares">
             {horse.achievements.map((item, i) => (
@@ -426,6 +430,22 @@ const photos = [horse.image, ...(horse.gallery ?? [])];
     font-size: clamp(1.8rem, 4vw, 3rem);
     color: var(--black);
     margin-bottom: 22px;
+  }
+
+  .earner-highlight {
+    font-family: var(--font-gotham);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    line-height: 1.35;
+    color: var(--black);
+    max-width: 820px;
+    margin: 0 auto 32px;
+    padding: 22px 28px;
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    background: var(--off-white);
   }
 
   .palmares {
