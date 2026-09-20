@@ -84,14 +84,14 @@ const menuStallions = ['sugar-little-step', 'colonels-dancing-gun', 'hollys-hija
       </nav>
 
       <nav class="menu-nav menu-panel menu-submenu" id="stallions-submenu">
-        <button class="menu-back" type="button" id="stallions-back">&larr; Menu</button>
+        <button class="menu-back" type="button" id="stallions-back">Back</button>
         {menuStallions.map((s) => (
           <a href={`/stallions/${s.slug}`}>{s.name}</a>
         ))}
       </nav>
 
       <nav class="menu-nav menu-panel menu-submenu" id="horses-submenu">
-        <button class="menu-back" type="button" id="horses-back">&larr; Menu</button>
+        <button class="menu-back" type="button" id="horses-back">Back</button>
         {horseCategories.map((c) => (
           <>
             {c.slug === 'yearlings' && <span class="menu-break" aria-hidden="true"></span>}
