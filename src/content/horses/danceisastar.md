@@ -1,7 +1,7 @@
 ---
 name: "Danceisastar"
 categories: ["three-years-old"]
-image: "/images/horse-portrait.jpg"
+image: "/images/uploads/danceisastar-1.jpg"
 subtitle: "Mare"
 born: "May 6, 2023"
 color: "Palomino"
@@ -14,6 +14,8 @@ sireSire: "Wimpys Little Step"
 sireDam: "AH Sugar Sugar"
 damSire: "Smart Spook"
 damDam: "Sailors Dance"
+gallery:
+  - "/images/uploads/danceisastar-2.jpg"
 programs:
   - "NRHA European/North American Nomination"
   - "NRHA SSP Germany"
