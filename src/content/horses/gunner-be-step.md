@@ -1,7 +1,7 @@
 ---
 name: "Gunner Be Step"
 categories: ["show-horses"]
-image: "/images/horse-running.jpg"
+image: "/images/uploads/gunner-be-step-1.jpg"
 subtitle: "Gelding"
 born: "January 4, 2020"
 color: "Sorrel"
@@ -13,6 +13,12 @@ sireSire: "Wimpys Little Step"
 sireDam: "AH Sugar Sugar"
 damSire: "Colonels Smoking Gun"
 damDam: "She's A Majestic Whiz"
+gallery:
+  - "/images/uploads/gunner-be-step-2.jpg"
+  - "/images/uploads/gunner-be-step-3.jpg"
+  - "/images/uploads/gunner-be-step-4.jpg"
+  - "/images/uploads/gunner-be-step-5.jpg"
+  - "/images/uploads/gunner-be-step-6.jpg"
 programs:
   - "NRHA European/North American Nomination"
   - "NRBC"
