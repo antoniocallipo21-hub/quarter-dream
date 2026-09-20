@@ -267,6 +267,11 @@ const news = newsEntries
     font-size: 6rem;
     line-height: 1.25;
     margin-top: 36px;
+    /* The script glyphs reach below the line box; iOS clips the animated
+       layer to the box, so extend it and cancel the extra size with margins. */
+    padding: 0.15em 0 0.4em;
+    margin-top: calc(36px - 0.15em);
+    margin-bottom: -0.4em;
   }
 
   .achieve-meta {

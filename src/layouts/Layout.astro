@@ -204,7 +204,8 @@ const menuStallions = ['sugar-little-step', 'colonels-dancing-gun', 'hollys-hija
           const maxHeightVh = parseFloat(el.dataset.maxHeight ?? '');
           if (!Number.isNaN(maxHeightVh)) {
             const maxHeightPx = (window.innerHeight * maxHeightVh) / 100;
-            const heightPerPx = el.getBoundingClientRect().height / currentSize;
+            const padY = parseFloat(getComputedStyle(el).paddingTop) + parseFloat(getComputedStyle(el).paddingBottom);
+            const heightPerPx = (el.getBoundingClientRect().height - padY) / currentSize;
             newSize = Math.min(newSize, maxHeightPx / heightPerPx);
           }
 
