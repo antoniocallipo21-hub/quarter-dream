@@ -1,7 +1,7 @@
 ---
 name: "Cromed Hijacker"
 categories: ["three-years-old"]
-image: "/images/horse-stable.jpg"
+image: "/images/uploads/cromed-hijacker-1.jpg"
 subtitle: "Mare"
 born: "May 24, 2023"
 color: "Sorrel"
@@ -14,6 +14,8 @@ sireSire: "HF Mobster"
 sireDam: "Conquista Holly"
 damSire: "Custom Crome"
 damDam: "Smartest Pretty Lady"
+gallery:
+  - "/images/uploads/cromed-hijacker-2.jpg"
 programs:
   - "NRHA European/North American Nomination"
   - "NRHA Germany"
