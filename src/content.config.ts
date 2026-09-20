@@ -16,7 +16,7 @@ const horses = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/horses' }),
   schema: z.object({
     name: z.string(),
-    categories: z.array(z.enum(['broodmares', 'show-horses', 'three-years-old', 'two-years-old', 'weanlings'])).min(1),
+    categories: z.array(z.enum(['broodmares', 'show-horses', 'three-years-old', 'two-years-old', 'yearlings', 'weanlings'])).min(1),
     image: z.string(),
     subtitle: z.string().optional(),
     born: z.string().optional(),

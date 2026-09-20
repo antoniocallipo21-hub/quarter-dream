@@ -3,6 +3,7 @@ export type HorseCategorySlug =
   | 'show-horses'
   | 'three-years-old'
   | 'two-years-old'
+  | 'yearlings'
   | 'weanlings';
 
 export interface HorseCategory {
@@ -15,5 +16,6 @@ export const horseCategories: HorseCategory[] = [
   { slug: 'show-horses', label: 'Show Horses' },
   { slug: 'three-years-old', label: 'Three Years Old' },
   { slug: 'two-years-old', label: 'Two Years Old' },
+  { slug: 'yearlings', label: 'Yearlings' },
   { slug: 'weanlings', label: 'Weanlings' },
 ];

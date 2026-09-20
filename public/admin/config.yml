@@ -93,6 +93,7 @@ collections:
           - { label: "Show Horses", value: "show-horses" }
           - { label: "Three Years Old", value: "three-years-old" }
           - { label: "Two Years Old", value: "two-years-old" }
+          - { label: "Yearlings", value: "yearlings" }
           - { label: "Weanlings", value: "weanlings" }
       - { label: "Foto principale", name: "image", widget: "image" }
       - { label: "Sottotitolo (es. anno e sesso)", name: "subtitle", widget: "string", required: false }
