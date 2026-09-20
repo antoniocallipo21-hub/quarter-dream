@@ -29,6 +29,11 @@ const { stallion } = Astro.props;
     </div>
   </section>
 
+  <!-- PORTRAIT (mobile only, sits between hero and passport) -->
+  <div class="stallion-mobile-portrait">
+    <img src={stallion.portrait} alt={`${stallion.name} portrait`} loading="lazy" />
+  </div>
+
   <!-- STALLION PASSPORT -->
   <section class="stallion-body">
     <div class="passport">
@@ -248,6 +253,8 @@ const { stallion } = Astro.props;
     height: 100%;
     object-fit: cover;
   }
+
+  .stallion-mobile-portrait { display: none; }
 
   .stallion-hero-content {
     position: relative;
@@ -517,13 +524,23 @@ const { stallion } = Astro.props;
   }
 
   @media (max-width: 900px) {
-    .stallion-hero-portrait {
-      top: 72px;
-      bottom: auto;
-      right: var(--px);
-      width: 110px;
+    .stallion-hero-portrait { display: none; }
+
+    .stallion-mobile-portrait {
+      display: block;
+      background: var(--white);
+      padding: 32px var(--px) 0;
+    }
+
+    .stallion-mobile-portrait img {
+      display: block;
+      width: 100%;
+      max-width: 320px;
       aspect-ratio: 400 / 566;
-      border-radius: 10px;
+      object-fit: cover;
+      margin: 0 auto;
+      border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
     }
 
     .palmares { columns: 1; }
