@@ -10,9 +10,13 @@ export function getStaticPaths() {
 }
 
 const { stallion } = Astro.props;
+
+const stallionDescription =
+  stallion.description?.replace(/<[^>]+>/g, '').slice(0, 155) ||
+  `${stallion.name} – ${stallion.subtitle}, standing at stud at Quarter Dream in Ostuni, Puglia.`;
 ---
 
-<Layout title={stallion.name}>
+<Layout title={stallion.name} description={stallionDescription}>
   <!-- HERO -->
   <section class="stallion-hero">
     <img src={stallion.image} alt={stallion.name} class="stallion-hero-photo" />

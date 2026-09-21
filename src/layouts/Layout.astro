@@ -6,9 +6,18 @@ interface Props {
   title?: string;
   description?: string;
   navDark?: boolean;
+  pageTitle?: string;
 }
 
-const { title = 'Quarter Dream', description = "Quarter Dream SRL – NRHA Reining Horse breeders in Ostuni, Puglia. If you can dream it, you can do it.", navDark = false } = Astro.props;
+const {
+  title = 'Quarter Dream',
+  description = 'Quarter Dream SRL – NRHA Reining Horse breeders in Ostuni, Puglia. If you can dream it, you can do it.',
+  navDark = false,
+  pageTitle,
+} = Astro.props;
+
+// Set to false once the site is live on its real domain.
+const IS_DEMO = true;
 
 const menuStallions = ['sugar-little-step', 'colonels-dancing-gun', 'hollys-hijacker']
   .map((slug) => stallions.find((s) => s.slug === slug)!);
@@ -20,12 +29,13 @@ const menuStallions = ['sugar-little-step', 'colonels-dancing-gun', 'hollys-hija
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    {IS_DEMO && <meta name="robots" content="noindex, nofollow" />}
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300&display=swap" rel="stylesheet" />
-    <title>{title !== 'Quarter Dream' ? `${title} | Quarter Dream` : 'Quarter Dream – NRHA Reining Horse Breeders'}</title>
+    <title>{pageTitle ?? (title !== 'Quarter Dream' ? `${title} | Quarter Dream` : 'Quarter Dream | NRHA Reining Horse Breeders in Ostuni, Puglia')}</title>
 
     <script is:inline>
       // Netlify Identity invite/recovery links point at the bare domain;
@@ -412,6 +422,18 @@ const menuStallions = ['sugar-little-step', 'colonels-dancing-gun', 'hollys-hija
   }
 
   img { max-width: 100%; height: auto; display: block; }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
   a { text-decoration: none; color: inherit; }
   button { background: none; border: none; cursor: pointer; font: inherit; }
 

@@ -11,13 +11,18 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { title, date, image, excerpt, gallery } = entry.data;
+const { title, date, image, excerpt, gallery, seoTitle, seoDescription } = entry.data;
 const { Content } = await render(entry);
 
 const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
 
-<Layout title={title} navDark={true}>
+<Layout
+  title={title}
+  pageTitle={seoTitle || `${title} | Quarter Dream`}
+  description={seoDescription || excerpt || `${title} – news from Quarter Dream, NRHA reining horse breeders in Ostuni, Puglia.`}
+  navDark={true}
+>
   <!-- BODY -->
   <section class="article-body">
     <div class="article-inner">

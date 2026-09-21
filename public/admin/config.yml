@@ -62,6 +62,8 @@ collections:
       - { label: "Immagine principale", name: "image", widget: "image" }
       - { label: "Riassunto", name: "excerpt", widget: "text", required: false }
       - { label: "Galleria (facoltativa, 2-3 foto)", name: "gallery", widget: "list", field: { label: "Foto", name: "photo", widget: "image" }, required: false }
+      - { label: "SEO – Titolo pagina (facoltativo, altrimenti generato in automatico)", name: "seoTitle", widget: "string", required: false }
+      - { label: "SEO – Descrizione pagina (facoltativa, altrimenti generata in automatico)", name: "seoDescription", widget: "text", required: false }
       - { label: "Contenuto", name: "body", widget: "markdown" }
 
   - name: "team"
@@ -124,6 +126,8 @@ collections:
           - { label: "Stallone", name: "sire", widget: "string" }
           - { label: "Data prevista (es. January 2026)", name: "due", widget: "string" }
       - { label: "Galleria (facoltativa)", name: "gallery", widget: "list", field: { label: "Foto", name: "photo", widget: "image" }, required: false }
+      - { label: "SEO – Titolo pagina (facoltativo, altrimenti generato in automatico)", name: "seoTitle", widget: "string", required: false }
+      - { label: "SEO – Descrizione pagina (facoltativa, altrimenti generata in automatico)", name: "seoDescription", widget: "text", required: false }
       - { label: "Descrizione", name: "body", widget: "markdown", required: false }
 
   - name: "stallions"

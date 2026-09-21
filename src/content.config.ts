@@ -9,6 +9,8 @@ const news = defineCollection({
     image: z.string(),
     excerpt: z.string().optional(),
     gallery: z.array(z.string()).optional(),
+    seoTitle: z.string().optional(),
+    seoDescription: z.string().optional(),
   }),
 });
 
@@ -43,6 +45,8 @@ const horses = defineCollection({
       due: z.string(),
     })).optional(),
     gallery: z.array(z.string()).optional(),
+    seoTitle: z.string().optional(),
+    seoDescription: z.string().optional(),
   }),
 });
 

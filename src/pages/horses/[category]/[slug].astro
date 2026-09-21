@@ -19,9 +19,22 @@ const { Content } = await render(entry);
 const categoryLabel = horseCategories.find((c) => c.slug === category)?.label ?? '';
 
 const photos = [horse.image, ...(horse.gallery ?? [])];
+
+const defaultDescription = [
+  horse.subtitle,
+  horse.sire && horse.dam ? `by ${horse.sire} out of ${horse.dam}` : null,
+  `at Quarter Dream, NRHA reining horse breeders in Ostuni, Puglia.`,
+]
+  .filter(Boolean)
+  .join(' – ');
 ---
 
-<Layout title={horse.name} navDark={true}>
+<Layout
+  title={horse.name}
+  pageTitle={horse.seoTitle || `${horse.name} | Quarter Dream`}
+  description={horse.seoDescription || defaultDescription}
+  navDark={true}
+>
   <section class="horse-page">
     <div class="horse-gallery-col">
       <div class="horse-main-photo">

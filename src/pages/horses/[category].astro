@@ -17,7 +17,7 @@ const categoryHorses = allHorses
   .map((h) => ({ slug: h.id, ...h.data }));
 ---
 
-<Layout title={cat.label}>
+<Layout title={cat.label} description={`${cat.label} at Quarter Dream, NRHA reining horse breeders in Ostuni, Puglia.`}>
   <!-- HERO -->
   <section class="category-hero">
     <h1 class="category-hero-title reveal">{cat.label}</h1>
