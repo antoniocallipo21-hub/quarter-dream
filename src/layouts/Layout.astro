@@ -1,6 +1,7 @@
 ---
 import { stallions } from '../data/stallions';
 import { horseCategories } from '../data/horses';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   title?: string;
@@ -322,6 +323,8 @@ const menuStallions = ['sugar-little-step', 'colonels-dancing-gun', 'hollys-hija
         horsesToggle?.setAttribute('aria-expanded', 'false');
       });
     </script>
+
+    <Analytics />
   </body>
 </html>
 
